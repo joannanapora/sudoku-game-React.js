@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
-import { validSolution } from "../checking-function/check.fn";
+import { validSolution } from "./functions/check.fn";
 
 test("renders learn react link", () => {
   render(<App />);

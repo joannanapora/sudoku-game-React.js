@@ -55,7 +55,7 @@ export const createCells = () => {
 
     listOfCells.push({
       id: i,
-      value: 0,
+      value: 1,
       color: setColor(),
     });
   }
