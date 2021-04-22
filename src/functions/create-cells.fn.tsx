@@ -2,6 +2,7 @@ export interface ICell {
   id: number;
   value: number;
   color: string;
+  notToChange: boolean;
 }
 
 export const createCells = () => {
@@ -55,8 +56,9 @@ export const createCells = () => {
 
     listOfCells.push({
       id: i,
-      value: 1,
+      value: 0,
       color: setColor(),
+      notToChange: false,
     });
   }
 

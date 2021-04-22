@@ -15,7 +15,7 @@
 }
 
 .divNumber {
-  padding: 0 2vw 1vh 2vw;
+  padding: 0 1.2vw 1vh 1.2vw;
   font-size: 3vh;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -41,7 +41,7 @@
 }
 
 .checkButton:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
   background-color: orange;
   cursor: pointer;
 }
@@ -58,4 +58,13 @@
   width: 6vw;
   font-size: 3vh;
   outline-color: orange;
+  font-weight: 900;
+}
+
+.disabledSudokuButton {
+  height: 8vh;
+  width: 6vw;
+  font-size: 3vh;
+  color: rgb(75, 71, 71);
+  outline-color: black;
 }

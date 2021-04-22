@@ -3,7 +3,8 @@ import { forEachChild } from "typescript";
 export const compareRows = (sudokuArray: number[][]): boolean => {
   let isValid = true;
   sudokuArray.forEach((el, i) => {
-    let array = new Set(sudokuArray[i]);
+    console.log(el);
+    let array = new Set();
     if (9 !== array.size) {
       isValid = false;
     }

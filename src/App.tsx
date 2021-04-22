@@ -3,11 +3,18 @@ import "./App.css";
 import { createCells } from "./functions/create-cells.fn";
 import { ICell } from "./functions/create-cells.fn";
 import { validSolution } from "./functions/check.fn";
+import { createBoard } from "./functions/create-board.fn";
+import { LVL } from "./functions/create-board.fn";
 
 const App = () => {
   const [cells, setCells] = useState<ICell[]>(createCells());
   const [clickedNumber, setClickedNumber] = useState<number>(-1);
   const [idOfCell, setClickedCell] = useState<number>(-1);
+  const [alert, setAlert] = useState<{}>({
+    fillField: false,
+    won: false,
+    lost: false,
+  });
 
   useEffect(() => {
     if (clickedNumber !== -1 && idOfCell !== -1) {
@@ -21,11 +28,14 @@ const App = () => {
     }
     return () => {
       setClickedNumber(-1);
-      setClickedCell(-1);
     };
   }, [cells, clickedNumber]);
 
-  const onCellClick = (id: number) => {
+  const onCellClick = (id: number, ifDisabled: boolean) => {
+    if (ifDisabled) {
+      setClickedCell(-1);
+      return;
+    }
     setClickedCell(id);
     window.addEventListener("keydown", (event) => {
       if (["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(event.key)) {
@@ -52,22 +62,14 @@ const App = () => {
       splittedListOfValues.push(part);
     }
 
-    if (
-      validSolution([
-        [8, 3, 5, 4, 1, 6, 9, 2, 7],
-        [2, 9, 6, 8, 5, 7, 4, 3, 1],
-        [4, 1, 7, 2, 9, 3, 6, 5, 8],
-        [5, 6, 9, 1, 3, 4, 7, 8, 2],
-        [1, 2, 3, 6, 7, 8, 5, 4, 9],
-        [7, 4, 8, 5, 2, 9, 1, 6, 3],
-        [6, 5, 2, 7, 8, 1, 3, 9, 4],
-        [9, 8, 1, 3, 4, 5, 2, 7, 6],
-        [3, 7, 4, 9, 6, 2, 8, 1, 5],
-      ])
-    ) {
-      alert("WYGRALES");
+    if (validSolution(splittedListOfValues)) {
+      let newList = cells.map((el) => {
+        return { ...el, value: 0 };
+      });
+      setCells(newList);
+      setAlert({ ...alert, won: true, lost: false });
     } else {
-      alert("PRZEGRALES");
+      setAlert({ ...alert, lost: true, won: false });
     }
   };
 
@@ -76,16 +78,45 @@ const App = () => {
       return el.value === 0;
     });
     if (emptyField) {
-      alert("Please fill in empty fields!!!");
+      setAlert({ ...alert, fillFields: true });
     } else {
       prepareListToCheck();
     }
+  };
+
+  const onRestart = () => {
+    let cleanedBoard = createBoard(LVL.HARD);
+    let newList = cells.map((el, i) => {
+      return {
+        ...el,
+        value: Number(cleanedBoard[i]),
+        notToChange: Number(cleanedBoard[i]) !== 0,
+      };
+    });
+
+    setCells(newList);
+  };
+
+  const onClean = () => {
+    if (idOfCell === -1) {
+      return;
+    }
+    let newList = cells.map((el) => {
+      if (el.id === idOfCell) {
+        return { ...el, value: 0 };
+      }
+      return el;
+    });
+    setCells(newList);
   };
 
   return (
     <div className="App">
       <h1 className="header">SUDOKU</h1>
       <div style={{ display: "flex", justifyContent: "center" }}>
+        <div onClick={onRestart} className="divNumber">
+          RESTART
+        </div>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((el, i) => {
           return (
             <div
@@ -97,15 +128,20 @@ const App = () => {
             </div>
           );
         })}
+        <div onClick={onClean} className="divNumber">
+          CLEAN
+        </div>
       </div>
       <div className="grid">
         {cells?.map((el, i) => {
           return (
             <button
-              className="sudokuButton"
+              className={
+                el.notToChange ? "disabledSudokuButton" : "sudokuButton"
+              }
               style={{ backgroundColor: el.color }}
               key={i}
-              onClick={() => onCellClick(el.id)}
+              onClick={() => onCellClick(el.id, el.notToChange)}
             >
               {el.value === 0 ? "" : el.value}
             </button>
