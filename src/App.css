@@ -1,11 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.demo {
+  font-family: arial;
+}
+
 .App {
   text-align: center;
 }
 
 .header {
-  font-size: 5vh;
-  margin-top: 3vh;
+  font-size: 40px;
+  padding: 10px;
   color: orange;
+}
+
+.result-lose {
+  font-size: 70px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  place-content: center;
+  width: 100%;
+}
+.result-empty {
+  font-size: 55px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  place-content: center;
+  width: 100%;
+}
+
+.result-win {
+  font-size: 110px;
+  color: orange;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  place-content: center;
+  width: 100%;
+}
+
+.result-ok {
+  font-size: 40px;
+  color: black;
+  position: absolute;
+  top: 60%;
+  display: flex;
+  place-content: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.result-start {
+  font-size: 110px;
+  color: orange;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  place-content: center;
+  width: 100%;
+  cursor: pointer;
 }
 
 .grid {
@@ -14,14 +76,15 @@
   justify-content: center;
 }
 
-.divNumber {
-  padding: 0 1.2vw 1vh 1.2vw;
-  font-size: 3vh;
+.controls {
+  padding: 20px;
+  font-size: 30px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
-.divNumber:hover {
-  transform: scale(1.5);
+
+.controls:hover {
+  transform: scale(1.2);
   color: orange;
   cursor: pointer;
 }
@@ -54,17 +117,149 @@
 }
 
 .sudokuButton {
-  height: 8vh;
-  width: 6vw;
+  height: 6vh;
+  width: 10vw;
   font-size: 3vh;
   outline-color: orange;
   font-weight: 900;
 }
 
 .disabledSudokuButton {
-  height: 8vh;
-  width: 6vw;
+  height: 6vh;
+  width: 10vw;
   font-size: 3vh;
   color: rgb(75, 71, 71);
   outline-color: black;
+}
+
+.numbers-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.functions {
+  display: flex;
+  font-size: 30px;
+}
+.numbers {
+  display: flex;
+  font-size: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .sudokuButton {
+    height: 7vh;
+    width: 9vw;
+    font-size: 3vh;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .disabledSudokuButton {
+    height: 7vh;
+    width: 9vw;
+    font-size: 3vh;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .header {
+    font-size: 50px;
+    margin-top: 20px;
+    color: orange;
+  }
+
+  .controls {
+    padding: 5px 20px;
+    font-size: 40px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .sudokuButton {
+    height: 7vh;
+    width: 6vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .disabledSudokuButton {
+    height: 7vh;
+    width: 6vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .numbers-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .controls {
+    padding: 20px;
+    font-size: 30px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .header {
+    font-size: 50px;
+    margin-top: 20px;
+    color: orange;
+  }
+
+  .controls {
+    padding: 20px;
+    font-size: 40px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .sudokuButton {
+    height: 7vh;
+    width: 5vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .disabledSudokuButton {
+    height: 7vh;
+    width: 5vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .sudokuButton {
+    height: 7vh;
+    width: 5vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .disabledSudokuButton {
+    height: 7vh;
+    width: 5vw;
+    font-size: 40px;
+    outline-color: orange;
+    font-weight: 900;
+  }
 }

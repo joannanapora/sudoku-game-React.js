@@ -6,14 +6,22 @@ import { validSolution } from "./functions/check.fn";
 import { createBoard } from "./functions/create-board.fn";
 import { LVL } from "./functions/create-board.fn";
 
+interface IAlerts {
+  fillField: boolean;
+  won: boolean;
+  lost: boolean;
+  start: boolean;
+}
+
 const App = () => {
   const [cells, setCells] = useState<ICell[]>(createCells());
   const [clickedNumber, setClickedNumber] = useState<number>(-1);
   const [idOfCell, setClickedCell] = useState<number>(-1);
-  const [alert, setAlert] = useState<{}>({
+  const [alerts, setAlerts] = useState<IAlerts>({
     fillField: false,
     won: false,
     lost: false,
+    start: true,
   });
 
   useEffect(() => {
@@ -67,9 +75,9 @@ const App = () => {
         return { ...el, value: 0 };
       });
       setCells(newList);
-      setAlert({ ...alert, won: true, lost: false });
+      setAlerts({ ...alerts, won: true, lost: false });
     } else {
-      setAlert({ ...alert, lost: true, won: false });
+      setAlerts({ ...alerts, lost: true, won: false });
     }
   };
 
@@ -78,10 +86,24 @@ const App = () => {
       return el.value === 0;
     });
     if (emptyField) {
-      setAlert({ ...alert, fillFields: true });
+      setAlerts({ ...alerts, fillField: true });
     } else {
       prepareListToCheck();
     }
+  };
+
+  const onOk = () => {
+    setAlerts({
+      fillField: false,
+      won: false,
+      lost: false,
+      start: false,
+    });
+  };
+
+  const onStartClick = () => {
+    onRestart();
+    setAlerts({ ...alerts, start: false });
   };
 
   const onRestart = () => {
@@ -113,25 +135,42 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="header">SUDOKU</h1>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div onClick={onRestart} className="divNumber">
-          RESTART
+      <div className="numbers-container">
+        <div className="functions">
+          <div onClick={onRestart} className="controls">
+            RESTART
+          </div>
+          <div onClick={onClean} className="controls">
+            CLEAN
+          </div>
         </div>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((el, i) => {
-          return (
-            <div
-              onClick={() => onNumberClick(el)}
-              className="divNumber"
-              key={i}
-            >
-              {el}
-            </div>
-          );
-        })}
-        <div onClick={onClean} className="divNumber">
-          CLEAN
+        <div className="numbers">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((el, i) => {
+            return (
+              <div
+                onClick={() => onNumberClick(el)}
+                className="controls"
+                key={i}
+              >
+                {el}
+              </div>
+            );
+          })}
         </div>
       </div>
+      {alerts.won && <h1 className="result-win">WIN !</h1>}
+      {alerts.start && (
+        <h1 onClick={onStartClick} className="result-start">
+          START
+        </h1>
+      )}
+      {alerts.lost && <h1 className="result-lose">KEEP TRYING</h1>}
+      {alerts.fillField && <h1 className="result-empty">EMPTY FIELDS</h1>}
+      {alerts.fillField || alerts.lost ? (
+        <h1 onClick={onOk} className="result-ok">
+          return to game
+        </h1>
+      ) : null}
       <div className="grid">
         {cells?.map((el, i) => {
           return (
@@ -147,6 +186,9 @@ const App = () => {
             </button>
           );
         })}
+      </div>
+      <div className="demo">
+        (demo version, generating random board in progress)
       </div>
       <div className="checkButtonContainer">
         <button onClick={onCheck} className="checkButton">
