@@ -1,8 +1,7 @@
-
 export const compareRows = (sudokuArray: number[][]): boolean => {
   let isValid = true;
   sudokuArray.forEach((el, i) => {
-    let array = new Set();
+    let array = new Set(el);
     if (9 !== array.size) {
       isValid = false;
     }

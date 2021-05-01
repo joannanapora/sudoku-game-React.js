@@ -7,6 +7,7 @@
 
 .demo {
   font-family: arial;
+  font-size: 14px;
 }
 
 .App {
@@ -15,58 +16,43 @@
 
 .header {
   font-size: 40px;
-  padding: 10px;
+  padding-top: 30px;
   color: orange;
 }
 
-.result-lose {
-  font-size: 70px;
-  color: red;
-  position: absolute;
+.result {
+  position: fixed;
   top: 50%;
-  display: flex;
-  place-content: center;
-  width: 100%;
-}
-.result-empty {
-  font-size: 55px;
-  color: red;
-  position: absolute;
-  top: 50%;
-  display: flex;
-  place-content: center;
-  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.result-win {
+.lose {
+  font-size: 50px;
+  color: red;
+}
+.empty {
+  font-size: 50px;
+  color: red;
+}
+
+.win {
   font-size: 110px;
   color: orange;
-  position: absolute;
-  top: 50%;
-  display: flex;
-  place-content: center;
-  width: 100%;
 }
 
-.result-ok {
+.ok {
   font-size: 40px;
   color: black;
-  position: absolute;
-  top: 60%;
-  display: flex;
-  place-content: center;
-  width: 100%;
   cursor: pointer;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.result-start {
-  font-size: 110px;
-  color: orange;
-  position: absolute;
-  top: 50%;
-  display: flex;
-  place-content: center;
-  width: 100%;
+.start {
+  font-size: 80px;
+  color: black;
   cursor: pointer;
 }
 
@@ -77,22 +63,25 @@
 }
 
 .controls {
-  padding: 20px;
+  padding: 10px 11px;
   font-size: 30px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 
+.functions-list {
+  display: flex;
+}
+
 .controls:hover {
   transform: scale(1.2);
   color: orange;
-  cursor: pointer;
 }
 
 .checkButton {
-  margin: 2vh;
-  padding: 2vh 3vh 1vh 3vh;
-  font-size: 3vh;
+  margin: 20px;
+  padding: 15px 20px 10px 20px;
+  font-size: 20px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   background-color: orange;
@@ -105,7 +94,6 @@
 
 .checkButton:hover {
   transform: scale(1.2);
-  background-color: orange;
   cursor: pointer;
 }
 
@@ -117,16 +105,16 @@
 }
 
 .sudokuButton {
-  height: 6vh;
-  width: 10vw;
+  height: 40px;
+  width: 40px;
   font-size: 3vh;
   outline-color: orange;
   font-weight: 900;
 }
 
 .disabledSudokuButton {
-  height: 6vh;
-  width: 10vw;
+  height: 40px;
+  width: 40px;
   font-size: 3vh;
   color: rgb(75, 71, 71);
   outline-color: black;
@@ -135,33 +123,24 @@
 .numbers-container {
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 0px 0px;
   flex-direction: column;
   width: 100%;
   align-items: center;
 }
 
-.functions {
-  display: flex;
-  font-size: 30px;
-}
-.numbers {
-  display: flex;
-  font-size: 30px;
-}
-
 @media only screen and (min-width: 768px) {
   .sudokuButton {
-    height: 7vh;
-    width: 9vw;
+    height: 66px;
+    width: 66px;
     font-size: 3vh;
     outline-color: orange;
     font-weight: 900;
   }
 
   .disabledSudokuButton {
-    height: 7vh;
-    width: 9vw;
+    height: 66px;
+    width: 66px;
     font-size: 3vh;
     outline-color: orange;
     font-weight: 900;
@@ -179,87 +158,18 @@
     transition: all 0.2s ease-in-out;
     cursor: pointer;
   }
-}
 
-@media only screen and (min-width: 1200px) {
-  .sudokuButton {
-    height: 7vh;
-    width: 6vw;
-    font-size: 40px;
-    outline-color: orange;
-    font-weight: 900;
-  }
-
-  .disabledSudokuButton {
-    height: 7vh;
-    width: 6vw;
-    font-size: 40px;
-    outline-color: orange;
-    font-weight: 900;
-  }
-
-  .numbers-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 20px 20px;
-    width: 100%;
-    align-items: center;
-  }
-
-  .controls {
-    padding: 20px;
+  .checkButton {
+    margin: 20px;
+    padding: 25px 40px 15px 40px;
     font-size: 30px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-  }
-
-  .header {
-    font-size: 50px;
-    margin-top: 20px;
-    color: orange;
-  }
-
-  .controls {
-    padding: 20px;
-    font-size: 40px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .sudokuButton {
-    height: 7vh;
-    width: 5vw;
-    font-size: 40px;
+    background-color: orange;
+    border: 3px solid black;
+    font-family: "Luckiest Guy", cursive;
+    display: flex;
+    justify-content: center;
     outline-color: orange;
-    font-weight: 900;
-  }
-
-  .disabledSudokuButton {
-    height: 7vh;
-    width: 5vw;
-    font-size: 40px;
-    outline-color: orange;
-    font-weight: 900;
-  }
-}
-
-@media only screen and (min-width: 1800px) {
-  .sudokuButton {
-    height: 7vh;
-    width: 5vw;
-    font-size: 40px;
-    outline-color: orange;
-    font-weight: 900;
-  }
-
-  .disabledSudokuButton {
-    height: 7vh;
-    width: 5vw;
-    font-size: 40px;
-    outline-color: orange;
-    font-weight: 900;
   }
 }
