@@ -41,15 +41,6 @@
   color: orange;
 }
 
-.ok {
-  font-size: 40px;
-  color: black;
-  cursor: pointer;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .start {
   font-size: 80px;
   color: black;

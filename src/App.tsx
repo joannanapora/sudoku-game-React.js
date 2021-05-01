@@ -168,11 +168,6 @@ const App = () => {
       )}
       {alerts.lost && <h1 className="result lose">KEEP TRYING</h1>}
       {alerts.fillField && <h1 className="result empty">EMPTY FIELDS</h1>}
-      {alerts.fillField || alerts.lost ? (
-        <h1 onClick={onOk} className="result ok">
-          return
-        </h1>
-      ) : null}
       <div className="grid">
         {cells?.map((el, i) => {
           return (
