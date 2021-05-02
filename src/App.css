@@ -1,8 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
-  overflow-x: hidden;
 }
 
 .demo {
@@ -12,6 +10,8 @@
 
 .App {
   text-align: center;
+  height: 100%;
+  overflow: auto;
 }
 
 .header {
@@ -22,7 +22,7 @@
 
 .result {
   position: fixed;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -47,10 +47,20 @@
   cursor: pointer;
 }
 
+.alert-container {
+  background-color: white;
+  padding: 3rem 8rem 1rem 8rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .grid {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto;
   justify-content: center;
+  position: relative;
 }
 
 .controls {
@@ -122,16 +132,16 @@
 
 @media only screen and (min-width: 768px) {
   .sudokuButton {
-    height: 66px;
-    width: 66px;
+    height: 52px;
+    width: 52px;
     font-size: 3vh;
     outline-color: orange;
     font-weight: 900;
   }
 
   .disabledSudokuButton {
-    height: 66px;
-    width: 66px;
+    height: 52px;
+    width: 52px;
     font-size: 3vh;
     outline-color: orange;
     font-weight: 900;
@@ -139,12 +149,57 @@
 
   .header {
     font-size: 50px;
+    margin-top: 0px;
+    color: orange;
+  }
+
+  .controls {
+    padding: 5px 15px;
+    font-size: 40px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .checkButton {
+    margin: 10px;
+    padding: 15px 30px 10px 30px;
+    font-size: 30px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    background-color: orange;
+    border: 3px solid black;
+    font-family: "Luckiest Guy", cursive;
+    display: flex;
+    justify-content: center;
+    outline-color: orange;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .sudokuButton {
+    height: 65px;
+    width: 65px;
+    font-size: 3vh;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .disabledSudokuButton {
+    height: 65px;
+    width: 65px;
+    font-size: 3vh;
+    outline-color: orange;
+    font-weight: 900;
+  }
+
+  .header {
+    font-size: 60px;
     margin-top: 20px;
     color: orange;
   }
 
   .controls {
-    padding: 5px 20px;
+    padding: 5px 24px;
     font-size: 40px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;

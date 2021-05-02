@@ -76,9 +76,9 @@ const App = () => {
     }
 
     if (validSolution(splittedListOfValues)) {
-      setAlerts({ ...alerts, won: true, lost: false });
+      setAlerts({ ...alerts, won: true, lost: false, fillField: false });
     } else {
-      setAlerts({ ...alerts, lost: true, won: false });
+      setAlerts({ ...alerts, lost: true, won: false, fillField: false });
     }
   };
 
@@ -160,22 +160,40 @@ const App = () => {
           })}
         </div>
       </div>
-      {alerts.won && <h1 className="result win">WIN !</h1>}
-      {alerts.start && (
-        <h1 onClick={onStartClick} className="result start">
-          START
-        </h1>
-      )}
-      {alerts.lost && <h1 className="result lose">KEEP TRYING</h1>}
-      {alerts.fillField && <h1 className="result empty">EMPTY FIELDS</h1>}
       <div className="grid">
+        {alerts.won && (
+          <div className="alert-container">
+            <h1 className="result win">WIN !</h1>
+          </div>
+        )}
+        {alerts.start && (
+          <div className="alert-container">
+            <h1 onClick={onStartClick} className="result start">
+              START
+            </h1>
+          </div>
+        )}
+        {alerts.lost && (
+          <div className="alert-container">
+            <h1 className="result lose">KEEP TRYING</h1>
+          </div>
+        )}
+        {alerts.fillField && (
+          <div className="alert-container">
+            <h1 className="result empty">EMPTY FIELDS</h1>
+          </div>
+        )}
         {cells?.map((el, i) => {
           return (
             <button
               className={
                 el.notToChange ? "disabledSudokuButton" : "sudokuButton"
               }
-              style={{ backgroundColor: el.color }}
+              style={
+                idOfCell === el.id
+                  ? { backgroundColor: "orange" }
+                  : { backgroundColor: el.color }
+              }
               key={i}
               onClick={() => onCellClick(el.id, el.notToChange)}
             >
