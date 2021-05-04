@@ -38,7 +38,6 @@ export const createBoard = () => {
         8,
         12,
         11,
-        10,
         15,
         18,
         16,

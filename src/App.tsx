@@ -93,15 +93,6 @@ const App = () => {
     }
   };
 
-  const onOk = () => {
-    setAlerts({
-      won: false,
-      lost: false,
-      start: false,
-      fillField: false,
-    });
-  };
-
   const onStartClick = () => {
     onRestart();
     setAlerts({ fillField: false, lost: false, won: false, start: false });
@@ -163,7 +154,7 @@ const App = () => {
       <div className="grid">
         {alerts.won && (
           <div className="alert-container">
-            <h1 className="result win">WIN !</h1>
+            <h1 className="result win">WIN</h1>
           </div>
         )}
         {alerts.start && (
